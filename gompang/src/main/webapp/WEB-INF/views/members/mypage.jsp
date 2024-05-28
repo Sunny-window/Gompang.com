@@ -7,15 +7,9 @@
     <meta charset="UTF-8">
     <title></title>
 <style>
-section{
-    width:1000px;
-    margin:0 auto;
-    padding: 0 50px;
-    height:calc(100vh - 90px);
-}
 #menu-item >*{
-    display:flex;
-    width:30%;
+    display:inline-block;
+    margin:10px;
 }
 #menu-btns >*{
     margin: 0 auto;
@@ -26,7 +20,9 @@ section{
     flex-direction:row;
 }
 #menu-form{
-    margin-top:20px;
+    margin:20px;
+    padding:20px;
+    font-size:1.5rem; 
 }
 </style>
 </head>
@@ -35,15 +31,20 @@ section{
     <%@ include file="../sub/header.jsp" %>
 </header>
 <section>
+    <%@ include file="../sub/nav.jsp" %>
+    <div class="main-container">
+        <h1 class="text-center"> My 곰팡 </h1>
         <div id="menu-form">
             <div id="menu-item">
                 <a href="">내 정보 관리</a>
+                <a href="">또 다른 메뉴</a>
             </div>
             <div id="menu-item">
-                <a href="">비밀번호</a>
+                <a href="/cart">장바구니</a>
             </div>
             <br>
         </div>
+    </div>
 </section> 
 <footer>
 

@@ -1,5 +1,7 @@
 package com.gompang.gompang.dto;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +16,5 @@ public class Product {
     private int price;
     private String img;
     private String descript;
+    private LocalDate regdate;
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gompang.gompang.dao.MemberDao;
 import com.gompang.gompang.dao.ProductDao;
-import com.gompang.gompang.dto.Member;
 import com.gompang.gompang.dto.Product;
 import com.gompang.gompang.service.GompangService;
 

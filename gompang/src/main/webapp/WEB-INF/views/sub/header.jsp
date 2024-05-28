@@ -15,34 +15,43 @@
             box-sizing: border-box;
             margin:0;
         }
-        .header{
-            height: 90px;
+        #logo-img{
+            width: 240px;
+            height: 150px;
         }
-        .header h1{
-            text-align: center;
-            font-size: 36px;
-            background-color: #d44548;
-            margin: 0;
-            padding: 6px;
-        }
-        #a-header {
-            text-decoration: none;
-            color: white;
-        }
-        #header-info{
+        #header{
             display:flex;
             justify-content: right;
             border-bottom:1px solid #d44548;
+            justify-content: space-between;
         }
-        #header-info a{
-            font-size:1.10rem;
+        #header a{
             font-weight:bold;
             text-decoration: none;
             color: #d44548;
             margin: 0 25px;
         }
-        ul{
-            list-style: none;
+        #header-logo{
+            display:flex;
+            align-items: center;
+        }
+        #header >span{
+            width:260px;
+            font-size:32px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            color: #d44548;
+            font-weight:bold;
+        }
+        #header-log-info{
+            width:260px;
+            display:flex;
+            align-items: center;
+        }
+        #header-log-info a{
+            font-weight:bold;
+            font-size:24px;
         }
         .text-center{
             text-align: center;
@@ -56,6 +65,7 @@
             width: 50px;
             height: 50px;
             cursor: pointer;
+            margin-bottom: 6px;
         }
         nav {
             width: 130px;
@@ -76,17 +86,26 @@
         .main-container{
             flex-grow: 1;
             width: calc(100% - 130px);
+            padding:20px;
         }
         ul{
             margin: 0 auto;
             padding: 20px;
+            list-style: none;
+        }
+        section {
+            display:flex;
+        }   
+        .zoomed {
+            transform: scale(1.2); 
         }
     </style>
 </head>
 
-<div class="header">
-    <h1> <a id="a-header" href="/"> 쿠팡 대신 곰팡 </a> </h1>
-    <div id="header-info">
+<div id="header">
+    <span id=""> 쿠* 대신 곰팡 </span>
+    <a id="header-logo" href="/"><img id="logo-img" src="/images/logo.png"></a>
+    <div id="header-log-info">
         <c:if test="${ sessionScope.logged ne null}">
             <c:if test="${role eq 'admin'}">
                 <a href="/admin"> ${sessionScope.logged} 님 </a>
@@ -102,3 +121,13 @@
         </c:if>
     </div>
 </div>
+
+<script>
+    function zoomIn(element) {
+        element.children[0].classList.add("zoomed"); // 이미지를 확대하기 위해 'zoomed' 클래스를 추가합니다.
+    }
+
+    function zoomOut(element) {
+        element.children[0].classList.remove("zoomed"); // 이미지를 축소하기 위해 'zoomed' 클래스를 제거합니다.
+    }
+</script>

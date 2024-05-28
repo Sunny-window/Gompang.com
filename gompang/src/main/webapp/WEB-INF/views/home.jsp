@@ -31,6 +31,7 @@
         display: block;
         width: 150px;
         height: 150px;
+        transition: transform 0.3s ease;
     }
     .grid-item:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -52,10 +53,6 @@
         color: black;
         text-decoration: none;
     }
-    section {
-        display:flex;
-    }
-    
 </style>
 </head>
 <body>
@@ -67,9 +64,9 @@
             <div class="grid-container">
                 <c:forEach var="p" items="${pList}" varStatus="stat"> 
                     <a class="product-link" href="/indexDetail.jsp?pcode=${p.pcode}">
-                        <div class="grid-item">
+                        <div class="grid-item" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">
                             <ul>
-                                <li><img id="pImg" src="/images/${p.img}.jpg" alt="${p.pname}"></li>
+                                <li><img id="pImg" src="/images/${p.img}" alt="${p.pname}"></li>
                                 <li id="product-name">${p.pname}</li>
                                 <li><fmt:formatNumber value="${p.price}" pattern="#,###"/>원</li>
                                 <li>${p.descript}</li>
