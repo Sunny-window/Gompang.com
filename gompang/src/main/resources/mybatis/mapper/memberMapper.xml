@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.gompang.gompang.dao.MemberDao">
+
+    <select id="selectAll" resultType="com.gompang.gompang.dto.Member">
+        SELECT * FROM members
+    </select>
+
+    <select id="login">
+        SELECT role FROM members WHERE membername = #{param1} AND pwd = #{param2}
+    </select>
+
+    <select id="selectByName">
+        SELECT membername FROM members WHERE membername = #{param1}
+    </select>
+
+    <select id="saveMember">
+        INSERT INTO members (membername, pwd) VALUES (#{param1}, #{param2});
+    </select>
+
+</mapper>

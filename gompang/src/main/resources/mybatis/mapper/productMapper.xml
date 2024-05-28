@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.gompang.gompang.dao.ProductDao">
+
+    <select id="selectAll" resultType="com.gompang.gompang.dto.Product">
+        SELECT * FROM product
+    </select>
+
+    <select id="getProduct" resultType="com.gompang.gompang.dto.Product">
+	    SELECT * FROM product WHERE pcode = #{param1}
+    </select>
+
+</mapper>
