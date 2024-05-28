@@ -28,7 +28,7 @@
             </div>
         </a></li>
         <c:if test="${role eq 'admin'}" >
-            <li><a href="/admin">
+            <li><a href="/admin/">
                 <div class="just-flex" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" >
                     <img id="icon"  src="/images/manager.png"> 
                     <span>관리자 메뉴</span>

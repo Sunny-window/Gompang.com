@@ -16,10 +16,11 @@
             margin:0;
         }
         #logo-img{
-            width: 240px;
-            height: 150px;
+            width: 208px;
+            height: 130px;
         }
         #header{
+            min-width:728px;
             display:flex;
             justify-content: right;
             border-bottom:1px solid #d44548;
@@ -36,7 +37,7 @@
             align-items: center;
         }
         #header >span{
-            width:260px;
+            min-width:260px;
             font-size:32px;
             align-items: center;
             display: flex;
@@ -45,7 +46,7 @@
             font-weight:bold;
         }
         #header-log-info{
-            width:260px;
+            min-width:260px;
             display:flex;
             align-items: center;
         }
@@ -86,7 +87,7 @@
         .main-container{
             flex-grow: 1;
             width: calc(100% - 130px);
-            padding:20px;
+            padding: 0 20px;
         }
         ul{
             margin: 0 auto;
@@ -103,12 +104,12 @@
 </head>
 
 <div id="header">
-    <span id=""> 쿠* 대신 곰팡 </span>
+    <span> 쿠* 대신 곰팡 </span>
     <a id="header-logo" href="/"><img id="logo-img" src="/images/logo.png"></a>
     <div id="header-log-info">
         <c:if test="${ sessionScope.logged ne null}">
             <c:if test="${role eq 'admin'}">
-                <a href="/admin"> ${sessionScope.logged} 님 </a>
+                <a href="/admin/"> ${sessionScope.logged} 님 </a>
             </c:if>
             <c:if test="${role ne 'admin'}">
                 <a href="/mypage"> ${sessionScope.logged} 님 </a>

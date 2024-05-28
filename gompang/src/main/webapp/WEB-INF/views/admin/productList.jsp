@@ -61,7 +61,7 @@
     <section>
         <%@ include file="sub/nav.jsp"%>
         <div class="main-container">
-            <h1 class="text-center"> 상품 리스트 </h1>
+            <h1 class="text-center"> 관리자 전용 상품 리스트 </h1>
             <div class="grid-container">
                 <c:forEach var="p" items="${pList}" varStatus="stat"> 
                     <a class="product-link" href="/Detail?pcode=${p.pcode}">
