@@ -17,7 +17,7 @@
 <section>
     <%@ include file="../sub/nav.jsp"%>
         <div class="main-container">
-
+            <h2> 장바구니 </h2>
         </div>
 </section>
 <footer>
