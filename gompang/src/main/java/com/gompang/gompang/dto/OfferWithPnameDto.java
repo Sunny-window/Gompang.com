@@ -5,10 +5,12 @@ import java.time.LocalDate;
 import lombok.Data;
 
 @Data
-public class Offer {
-    private int bcode;
-    private String useranme;
+public class OfferWithPnameDto {
+    private int ocode;
     private int pcode;
     private int amount;
     private LocalDate odate;
+    private String pname;
+    private int price;
+    private String img;
 }

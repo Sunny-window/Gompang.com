@@ -16,44 +16,37 @@
             margin:0;
         }
         #logo-img{
-            width: 208px;
-            height: 130px;
+            min-width: 300px;
+            height: 120px;
         }
         #header{
-            min-width:800px;
             display:flex;
-            justify-content: right;
-            border-top:4px solid black;
-            border-bottom:4px solid black;
+            min-width:800px;
             justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-bottom:1px solid lightgrey;
         }
         #header a{
             font-weight:bolder;
             text-decoration: none;
             color: black;
             margin: 0 25px;
+            display: flex;
+            justify-content: center;
         }
         #header-logo{
             display:flex;
             align-items: center;
         }
-        #header >span{
-            min-width:260px;
-            font-size:42px;
-            align-items: center;
-            display: flex;
-            justify-content: center;
-            color: #32a9df;
-            font-weight:bolder;
-        }
         #header-log-info{
             min-width:260px;
             display:flex;
-            align-items: center;
+            justify-content: right;
+            align-items: flex-end;
         }
         #header-log-info a{
             font-weight:bold;
-            font-size:24px;
+            font-size:16px;
         }
         .text-center{
             text-align: center;
@@ -73,8 +66,8 @@
             width: 130px;
             background-color: aliceblue;
             height: calc(80vh);
-            border:2px solid black;
-            margin-top: 70px;
+            margin-top: 36px;
+            box-shadow: -4px 6px 8px rgba(0, 0, 0, 0.4);
         }
         nav li {
             margin-bottom: 10px;
@@ -102,7 +95,9 @@
             display:flex;
             min-width:800px;
             max-width:1400px;
-            margin:0 auto;
+            padding-bottom:168px;
+            margin:64px auto;
+        
         }   
         .zoomed {
             transform: scale(1.2); 
@@ -110,12 +105,18 @@
         .nav-li-item{
             margin:12px 0px;
         }
+        span#header-title{
+            display: flex; 
+            align-items: center;
+            font-weight: bold;
+            font-size: 36px;
+        }
     </style>
 </head>
 
 <div id="header">
-    <span> 쿠*팡 대신 </span>
     <a id="header-logo" href="/"><img id="logo-img" src="/images/logo.png"></a>
+    <span id="header-title" > 곰 팡 ver 2.0</span>
     <div id="header-log-info">
         <c:if test="${ sessionScope.logged ne null}">
             <c:if test="${role eq 'admin'}">

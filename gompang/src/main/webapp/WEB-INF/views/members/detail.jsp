@@ -97,7 +97,7 @@ document.getElementById("submit-basket").addEventListener('click', ()=>{
         alert('재고가 부족합니다. 재고 : ' + '${p.stock}');
         return;
     }
-    location.href='/members/inputBasket?pcode=${p.stock}&amount='+amount;
+    location.href='/members/inputBasket?pcode=${p.pcode}&amount='+amount;
 
     console.log('pcode : '+'${p.pcode}');
     console.log('수량 : '+ amount);

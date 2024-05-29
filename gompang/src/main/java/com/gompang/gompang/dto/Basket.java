@@ -8,4 +8,8 @@ public class Basket {
     private String username;
     private int pcode;
     private int amount;
+
+    public void setAmountAddNum(int num){
+        this.amount += num;
+    }
 }

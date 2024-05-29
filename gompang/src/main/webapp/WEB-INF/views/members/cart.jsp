@@ -10,12 +10,15 @@
     #cart-list{
         display:flex;
         flex-direction:column;
+        min-height:600px;
     }
     #cart-list-item{
         display:flex;
         align-items: center;
         justify-content: space-between;
         text-align:center;
+        padding:12px 0;
+        border-bottom:1px solid darkgrey;
     }
     .cart-img{
         width:260px;
@@ -62,7 +65,7 @@
 <section>
     <%@ include file="../sub/nav.jsp"%>
         <div class="main-container">
-            <h2 class="text-center"> 장바구니 </h2>
+            <h1 class="text-center"> 장바구니 </h1>
             <div id="cart-list">
                 <div id="cart-list-item">
                     <span class="cart-selector"> <input id="allchk" type="checkbox" /> <label for="allchk" > 전체 선택 </label> </span>
@@ -72,9 +75,9 @@
                     <span class="cart-amount"> 수량</span>
                     <span class="cart-span"> 총 가격 </span>
                 </div>
-                <c:forEach var="p" items="${cartList}" varStatus="stat">
+                <c:forEach var="p" items="${cartList}">
                     <div id="cart-list-item">
-                        <span class="cart-selector"><input id="chk${stat.count}" type="checkbox" /> <label for="chk${stat.count}" > 선택 </label> </span>
+                        <span class="cart-selector"><input name="selectedItems" id="${p.bcode}" type="checkbox" /> <label for="${p.bcode}" > 선택 </label> </span>
                         <span class="cart-img">  <a class="product-link" href="/members/Detail?pcode=${p.pcode}"> <img src="/images/${p.img}"></a></span>
                         <span class="cart-span"> ${p.pname}</span>
                         <span class="cart-span"> <fmt:formatNumber value="${p.price}" pattern="#,###"/>원</span>
@@ -134,7 +137,7 @@
         });
     }
 
-        function toggleSelectAll() {
+    function toggleSelectAll() {
         const allChk = document.getElementById('allchk');
         const checkboxes = document.querySelectorAll('#cart-list input[type="checkbox"]:not(#allchk)');
         let allChecked = true;
@@ -175,12 +178,23 @@
     }
 
     function handleSelectDelete() {
-        alert('선택 삭제 버튼이 클릭되었습니다.');
+        const selectedCheckboxes = document.querySelectorAll('#cart-list input[name="selectedItems"]:checked');
+        const selectedIds = Array.from(selectedCheckboxes).map(checkbox => checkbox.id);
+        if (selectedIds.length > 0) {
+            let bcodes = '?bcode=' + selectedIds[0];
+            for(let i = 1; i < selectedIds.length; i++) {
+                console.log(selectedIds[i]);
+                bcodes += ','+selectedIds[i];
+            }
+            location.href = '/members/BasketDelete' + bcodes;
+        } else {
+            alert('선택된 항목이 없습니다.');
+        }
     }
 
     function handleAllDelete() {
         alert('장바구니를 비웁니다.');
-        location.href = '/members/CartOverturn';
+        location.href = '/members/BasketOverturn';
     }
 
     window.onload = function() {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.gompang.gompang.dao.OfferDao">
+
+    <insert id="regOffer" parameterType="com.gompang.gompang.dto.Offer">
+        INSERT INTO offer (ocode, username, pcode, amount, odate) VALUES (null,#{username} ,#{pcode}, #{amount}, default)
+    </insert>
+
+    <select id="getList" resultType="com.gompang.gompang.dto.OfferWithPnameDto">
+        SELECT o.ocode, o.pcode, o.amount, o.odate, p.pname, p.price, p.img FROM offer o JOIN product p ON o.pcode = p.pcode WHERE username = #{param1} ORDER BY o.odate DESC
+    </select>
+
+</mapper>

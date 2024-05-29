@@ -13,6 +13,18 @@
     </select>
 
     <delete id="overturnBasket">
-        
+        DELETE FROM basket WHERE username = #{param1}
     </delete>
+
+    <delete id="deleteBasket">
+        DELETE FROM basket WHERE bcode = #{param1}
+    </delete>
+
+    <select id="findExistAmount" >
+        SELECT * FROM basket WHERE username = #{param1} AND pcode = #{param2}
+    </select>
+
+    <update id="updateAmount">
+        UPDATE basket SET amount = #{param2} WHERE bcode = #{param1}
+    </update>
 </mapper>

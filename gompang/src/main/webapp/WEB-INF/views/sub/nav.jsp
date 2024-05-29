@@ -15,7 +15,7 @@
                 <span>장바구니</span>
             </div>
         </a></li>
-        <li><a href="/">
+        <li><a href="/members/offerList">
             <div class="just-flex nav-li-item" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" >
                 <img id="icon"  src="/images/order.png"> 
                 <span>주문내역</span>
