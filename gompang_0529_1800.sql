@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- 호스트:                          127.0.0.1
--- 서버 버전:                        10.11.7-MariaDB - mariadb.org binary distribution
+-- 서버 버전:                        11.3.2-MariaDB - mariadb.org binary distribution
 -- 서버 OS:                        Win64
 -- HeidiSQL 버전:                  12.6.0.6765
 -- --------------------------------------------------------
@@ -16,7 +16,7 @@
 
 
 -- gompang 데이터베이스 구조 내보내기
-CREATE DATABASE IF NOT EXISTS `gompang` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+CREATE DATABASE IF NOT EXISTS `gompang` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `gompang`;
 
 -- 테이블 gompang.basket 구조 내보내기
@@ -30,10 +30,31 @@ CREATE TABLE IF NOT EXISTS `basket` (
   KEY `FK_basket_product` (`pcode`),
   CONSTRAINT `FK_basket_members` FOREIGN KEY (`username`) REFERENCES `members` (`membername`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_basket_product` FOREIGN KEY (`pcode`) REFERENCES `product` (`pcode`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 테이블 데이터 gompang.basket:~0 rows (대략적) 내보내기
+-- 테이블 데이터 gompang.basket:~4 rows (대략적) 내보내기
 DELETE FROM `basket`;
+INSERT INTO `basket` (`bcode`, `username`, `pcode`, `amount`) VALUES
+	(2, 'root', 11, 3),
+	(3, 'root', 10, 2),
+	(4, '1', 12, 1),
+	(5, 'root', 23, 1);
+
+-- 테이블 gompang.filetest 구조 내보내기
+CREATE TABLE IF NOT EXISTS `filetest` (
+  `url` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 gompang.filetest:~7 rows (대략적) 내보내기
+DELETE FROM `filetest`;
+INSERT INTO `filetest` (`url`) VALUES
+	('1'),
+	('151'),
+	('응 해봐.jpg'),
+	('다크그레이.png'),
+	('다크그레이.png'),
+	('관리자 페이지.png'),
+	('제목 없음.png');
 
 -- 테이블 gompang.members 구조 내보내기
 CREATE TABLE IF NOT EXISTS `members` (
@@ -61,10 +82,15 @@ CREATE TABLE IF NOT EXISTS `offer` (
   KEY `FK_offer_product` (`pcode`),
   CONSTRAINT `FK_offer_members` FOREIGN KEY (`username`) REFERENCES `members` (`membername`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_offer_product` FOREIGN KEY (`pcode`) REFERENCES `product` (`pcode`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 테이블 데이터 gompang.offer:~0 rows (대략적) 내보내기
+-- 테이블 데이터 gompang.offer:~4 rows (대략적) 내보내기
 DELETE FROM `offer`;
+INSERT INTO `offer` (`ocode`, `username`, `pcode`, `amount`) VALUES
+	(15, 'root', 2, 5),
+	(16, 'root', 11, 2),
+	(17, 'root', 14, 1),
+	(18, 'root', 7, 3);
 
 -- 테이블 gompang.product 구조 내보내기
 CREATE TABLE IF NOT EXISTS `product` (
@@ -72,31 +98,33 @@ CREATE TABLE IF NOT EXISTS `product` (
   `pname` varchar(50) NOT NULL,
   `stock` int(11) NOT NULL DEFAULT 0,
   `price` int(11) NOT NULL DEFAULT 0,
-  `img` varchar(50) DEFAULT NULL,
+  `img` varchar(50) NOT NULL DEFAULT 'm.jpg',
   `descript` text NOT NULL DEFAULT '설명없음',
+  `regdate` date NOT NULL DEFAULT curdate(),
   PRIMARY KEY (`pcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 테이블 데이터 gompang.product:~17 rows (대략적) 내보내기
+-- 테이블 데이터 gompang.product:~18 rows (대략적) 내보내기
 DELETE FROM `product`;
-INSERT INTO `product` (`pcode`, `pname`, `stock`, `price`, `img`, `descript`) VALUES
-	(1, '제품', 0, 99990000, NULL, '사려면 사보던지 ㅋ'),
-	(2, '제품명1', 10, 18000, 'm1', '설명없음'),
-	(3, '제품명2', 5, 12500, 'm2', '설명없음'),
-	(4, '제품명3', 7, 15000, 'm3', '설명없음'),
-	(5, '제품명4', 9, 4300, 'm4', '설명없음'),
-	(6, '제품 대기중', 0, 0, NULL, '설명없음'),
-	(7, '제품명6', 12, 8700, 'm6', '설명없음'),
-	(8, '제품명7', 16, 9990, 'm7', '설명없음'),
-	(9, '제품명8', 5, 13800, 'm8', '설명없음'),
-	(10, '제품명9', 5, 22000, 'm9', '설명없음'),
-	(11, '제품명10', 11, 18900, 'm10', '설명없음'),
-	(12, '제품명11', 19, 9000, 'm11', '설명없음'),
-	(13, '제품명12', 15, 17900, 'm12', '설명없음'),
-	(14, '제품명13', 10, 728640, 'm13', '설명없음'),
-	(15, '제품명14', 6, 1260000, 'm14', '설명없음'),
-	(16, '제품명15', 2, 1579700, 'm15', '설명없음'),
-	(17, '제품명5', 11, 5900, 'm5', '설명없음');
+INSERT INTO `product` (`pcode`, `pname`, `stock`, `price`, `img`, `descript`, `regdate`) VALUES
+	(1, '제품', 0, 99990000, 'm.jpg', '사보던지 ㅋㅋ', '2024-04-28'),
+	(2, '아이스 마카롱', 10, 18000, 'm1.jpg', '시원하고 달달하니\r\n맛있겠다...\r\n', '2024-04-28'),
+	(3, '크리스피', 5, 12500, 'm2.jpg', '설명없음', '2024-05-25'),
+	(4, '밤만쥬', 7, 15000, 'm3.jpg', '설명없음', '2024-05-27'),
+	(5, '굿 모닝빵', 16, 4300, 'm4.jpg', '설명없음', '2024-05-25'),
+	(6, '아이폰 15 Pro', 2, 1579700, 'm15.jpg', '설명없음', '2024-05-27'),
+	(7, '우유 생크림빵', 12, 8700, 'm6.jpg', '설명없음', '2024-05-26'),
+	(8, '안흥할매 쌀찐빵', 16, 9990, 'm7.jpg', '설명없음', '2024-05-26'),
+	(9, '단호박 팥 미니호빵', 5, 13800, 'm8.jpg', '설명없음', '2024-05-26'),
+	(10, '도넛 세트', 5, 22000, 'm9.jpg', '설명없음', '2024-05-28'),
+	(11, 'Mini Fresh Donut', 11, 18900, 'm10.jpg', '설명없음', '2024-05-25'),
+	(12, '초코 머핀', 19, 9000, 'm11.jpg', '설명없음', '2024-05-28'),
+	(13, '치즈 케잌', 15, 17900, 'm12.jpg', '설명없음', '2024-05-28'),
+	(14, '아이폰 14', 10, 728640, 'm13.jpg', '설명없음', '2024-05-28'),
+	(15, '아이폰 15', 6, 1260000, 'm14.jpg', '설명없음', '2024-05-28'),
+	(17, '빵', 11, 5900, 'm5.jpg', '설명없음', '2024-05-28'),
+	(18, '제품 대기중', 0, 0, 'm.jpg', '설명없음', '2024-05-28'),
+	(23, '응 해봐~', 1, 90000, '응 해봐.jpg', ' **하면 그만이야~', '2024-05-29');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
