@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.gompang.gompang.dao.BasketDao">
+
+    <insert id="saveBasket" parameterType="com.gompang.gompang.dto.Basket">
+        INSERT INTO basket (bcode, username, pcode, amount) VALUES (null,#{username} ,#{pcode}, #{amount});
+    </insert>
+
+    <select id="cartList" resultType="com.gompang.gompang.dto.CartDto">
+        SELECT b.bcode, b.amount, p.pcode, p.pname, p.price, p.stock, p.img FROM basket b LEFT JOIN product p ON b.pcode = p.pcode WHERE username = #{param1}
+    </select>
+
+    <delete id="overturnBasket">
+        
+    </delete>
+</mapper>

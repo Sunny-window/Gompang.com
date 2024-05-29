@@ -36,7 +36,7 @@
         <h1 class="text-center"> 관리자 </h1>
         <div id="menu-form">
             <div id="menu-item">
-                <a href="/admin/saveProduct"> 상품 등록 </a>
+                <a href="/admin/saveProductForm"> 상품 등록 </a>
             </div>
             <div id="menu-item">
                 <a href="/admin/productList"> 상품 리스트 </a>

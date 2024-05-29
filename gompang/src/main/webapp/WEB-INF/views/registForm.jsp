@@ -32,6 +32,7 @@ section{
     <%@ include file="sub/header.jsp" %>
 </header>
 <section>
+    <div class="main-container">
     <h2> 회원 등록 </h2>
     <form action="/regist" method="post">
         <div id="regist-form">
@@ -50,6 +51,7 @@ section{
             </div>
         </div>
     </form>
+    </div>
 </section> 
 <footer>
 

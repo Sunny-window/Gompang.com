@@ -40,7 +40,7 @@
                 <a href="">또 다른 메뉴</a>
             </div>
             <div id="menu-item">
-                <a href="/cart">장바구니</a>
+                <a href="/members/cart">장바구니</a>
             </div>
             <br>
         </div>

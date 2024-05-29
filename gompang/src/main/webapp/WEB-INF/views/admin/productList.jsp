@@ -57,9 +57,9 @@
 </style>
 </head>
 <body>
-    <%@ include file="sub/header.jsp"%>
+    <%@ include file="../sub/header.jsp"%>
     <section>
-        <%@ include file="sub/nav.jsp"%>
+        <%@ include file="../sub/nav.jsp"%>
         <div class="main-container">
             <h1 class="text-center"> 관리자 전용 상품 리스트 </h1>
             <div class="grid-container">

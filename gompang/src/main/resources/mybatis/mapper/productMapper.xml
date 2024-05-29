@@ -5,11 +5,19 @@
     <mapper namespace="com.gompang.gompang.dao.ProductDao">
 
     <select id="selectAll" resultType="com.gompang.gompang.dto.Product">
-        SELECT * FROM product
+        SELECT * FROM product ORDER BY regdate DESC
+    </select>
+
+    <select id="selectHot" resultType="com.gompang.gompang.dto.Product">
+        SELECT * FROM product p LEFT JOIN offer o ON p.pcode = o.pcode ORDER BY o.amount DESC LIMIT 4
     </select>
 
     <select id="getProduct" resultType="com.gompang.gompang.dto.Product">
 	    SELECT * FROM product WHERE pcode = #{param1}
     </select>
+
+    <insert id="saveP" parameterType="com.gompang.gompang.dto.Product">
+        INSERT INTO product (pcode, pname, stock, price, descript, img, regdate) VALUES (default, #{pname}, #{stock}, #{price}, #{descript}, #{img}, default)
+    </insert>
 
 </mapper>

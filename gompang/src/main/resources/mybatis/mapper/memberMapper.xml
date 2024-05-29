@@ -16,8 +16,8 @@
         SELECT membername FROM members WHERE membername = #{param1}
     </select>
 
-    <select id="saveMember">
+    <insert id="saveMember">
         INSERT INTO members (membername, pwd) VALUES (#{param1}, #{param2});
-    </select>
+    </insert>
 
 </mapper>

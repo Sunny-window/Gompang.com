@@ -20,16 +20,17 @@
             height: 130px;
         }
         #header{
-            min-width:728px;
+            min-width:800px;
             display:flex;
             justify-content: right;
-            border-bottom:1px solid #d44548;
+            border-top:4px solid black;
+            border-bottom:4px solid black;
             justify-content: space-between;
         }
         #header a{
-            font-weight:bold;
+            font-weight:bolder;
             text-decoration: none;
-            color: #d44548;
+            color: black;
             margin: 0 25px;
         }
         #header-logo{
@@ -38,12 +39,12 @@
         }
         #header >span{
             min-width:260px;
-            font-size:32px;
+            font-size:42px;
             align-items: center;
             display: flex;
             justify-content: center;
-            color: #d44548;
-            font-weight:bold;
+            color: #32a9df;
+            font-weight:bolder;
         }
         #header-log-info{
             min-width:260px;
@@ -70,9 +71,9 @@
         }
         nav {
             width: 130px;
-            background-color: whitesmoke;
+            background-color: aliceblue;
             height: calc(80vh);
-            border:1px solid #d44548;
+            border:2px solid black;
             margin-top: 70px;
         }
         nav li {
@@ -86,25 +87,34 @@
         }
         .main-container{
             flex-grow: 1;
-            width: calc(100% - 130px);
+            width: calc(100vh - 131px);
             padding: 0 20px;
+            box-sizing: border-box;
         }
         ul{
-            margin: 0 auto;
+            margin: 10px auto;
             padding: 20px;
+        }
+        li{
             list-style: none;
         }
         section {
             display:flex;
+            min-width:800px;
+            max-width:1400px;
+            margin:0 auto;
         }   
         .zoomed {
             transform: scale(1.2); 
+        }
+        .nav-li-item{
+            margin:12px 0px;
         }
     </style>
 </head>
 
 <div id="header">
-    <span> 쿠* 대신 곰팡 </span>
+    <span> 쿠*팡 대신 </span>
     <a id="header-logo" href="/"><img id="logo-img" src="/images/logo.png"></a>
     <div id="header-log-info">
         <c:if test="${ sessionScope.logged ne null}">
@@ -112,7 +122,7 @@
                 <a href="/admin/"> ${sessionScope.logged} 님 </a>
             </c:if>
             <c:if test="${role ne 'admin'}">
-                <a href="/mypage"> ${sessionScope.logged} 님 </a>
+                <a href="/members/"> ${sessionScope.logged} 님 </a>
             </c:if>
             <a href="/logout"> 로그아웃 </a>
         </c:if>

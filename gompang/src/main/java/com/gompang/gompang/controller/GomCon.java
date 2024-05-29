@@ -2,7 +2,6 @@ package com.gompang.gompang.controller;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +31,9 @@ public class GomCon {
     public String requestMethodName(Model model) {
         List<Product> pList = pdao.selectAll();
         model.addAttribute("pList", pList);
+
+        List<Product> hotList = pdao.selectHot();
+        model.addAttribute("hotList", hotList);
         
         return "/home";
     }
@@ -61,10 +63,10 @@ public class GomCon {
         }   
         else{
             if(role.equals("admin")){
-                view = "redirect:/admin";
+                view = "redirect:/admin/";
             }
             else{
-                view = "redirect:/mypage";
+                view = "redirect:/members/";
             }
             session.setAttribute("logged", membername);
             session.setAttribute("role", role);
@@ -95,8 +97,10 @@ public class GomCon {
     @RequestMapping("/logout")
     public String logout(HttpServletRequest req){
         HttpSession session = req.getSession(false);
-        session.invalidate();
-        return "/home";
+        if(session != null){
+            session.invalidate();
+        }
+        return "redirect:/";
     }
 
 }
