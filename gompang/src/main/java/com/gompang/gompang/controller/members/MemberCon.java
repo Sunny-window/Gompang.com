@@ -65,7 +65,7 @@ public class MemberCon {
 
         Product p = pDao.getProduct(pcode);
         model.addAttribute("p", p);
-        return "/members/detail";
+        return "members/detail";
     }
 
     @RequestMapping("/inputBasket")
@@ -141,7 +141,7 @@ public class MemberCon {
             List<OfferWithPnameDto> offerList = oDao.getList(logged);
             
             model.addAttribute("offerList", offerList);
-            return "/members/offerList";
+            return "members/offerList";
 
         }
     }

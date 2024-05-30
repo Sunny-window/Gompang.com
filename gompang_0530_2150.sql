@@ -16,8 +16,8 @@
 
 
 -- gompangrep 데이터베이스 구조 내보내기
-CREATE DATABASE IF NOT EXISTS `gompangrep` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `gompangrep`;
+CREATE DATABASE IF NOT EXISTS `gompang` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `gompang`;
 
 -- 테이블 gompangrep.basket 구조 내보내기
 CREATE TABLE IF NOT EXISTS `basket` (
