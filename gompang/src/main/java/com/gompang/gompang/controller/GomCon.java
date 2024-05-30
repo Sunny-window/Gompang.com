@@ -35,7 +35,7 @@ public class GomCon {
         List<Product> hotList = pdao.selectHot();
         model.addAttribute("hotList", hotList);
         
-        return "/home";
+        return "/index";
     }
 
     @RequestMapping("/loginForm")
@@ -47,7 +47,7 @@ public class GomCon {
 
     @RequestMapping("/login")
     public String login(HttpServletRequest req){
-        String membername = req.getParameter("membername");
+        String username = req.getParameter("username");
         String pwd = req.getParameter("pwd");
         String view = "/registForm";
 
@@ -57,18 +57,18 @@ public class GomCon {
         }
         session = req.getSession(true);
         
-        String role = mdao.login(membername, pwd);
+        String role = mdao.login(username, pwd);
         if(role == null || role.equals("")){
             // 로그인 실패
         }   
         else{
-            if(role.equals("admin")){
+            if(role.equals("ROLE_ADMIN")){
                 view = "redirect:/admin/";
             }
             else{
                 view = "redirect:/members/";
             }
-            session.setAttribute("logged", membername);
+            session.setAttribute("logged", username);
             session.setAttribute("role", role);
         }
 
@@ -84,7 +84,7 @@ public class GomCon {
     @RequestMapping("/regist")
     public String regist(HttpServletRequest req) {
         String view = "/home";
-        String name = req.getParameter("membername");
+        String name = req.getParameter("username");
         int check_result = service.nameCheck(name);
         if( check_result == 1 ) { // result 1 means possible creation
             mdao.saveMember(name, req.getParameter("pwd"));
@@ -101,6 +101,24 @@ public class GomCon {
             session.invalidate();
         }
         return "redirect:/";
+    }
+
+    @RequestMapping("/errors")
+    public String error(HttpServletRequest req,Model model){
+        String err_msg = " 500 : 알수 없는 오류 ";
+        String ecode = req.getParameter("ecode");
+        switch (ecode) {
+            case "1":
+                err_msg = " 401 : 로그인 세션 만료" ;
+                break;
+            case "2":
+                err_msg = " 403 : 접근 권한 제한" ;
+                break;
+        }
+
+        model.addAttribute("err_code", ecode);
+        model.addAttribute("err_msg", err_msg);
+        return "/error";
     }
 
 }

@@ -8,16 +8,20 @@
         SELECT * FROM members
     </select>
 
+    <select id="findByUsername" resultType="com.gompang.gompang.dto.Member">
+        SELECT * FROM members WHERE username = #{param1}
+    </select>
+
     <select id="login">
-        SELECT role FROM members WHERE membername = #{param1} AND pwd = #{param2}
+        SELECT role FROM members WHERE username = #{param1} AND pwd = #{param2}
     </select>
 
     <select id="selectByName">
-        SELECT membername FROM members WHERE membername = #{param1}
+        SELECT username FROM members WHERE username = #{param1}
     </select>
 
     <insert id="saveMember">
-        INSERT INTO members (membername, pwd) VALUES (#{param1}, #{param2});
+        INSERT INTO members (username, pwd) VALUES (#{param1}, #{param2});
     </insert>
 
 </mapper>

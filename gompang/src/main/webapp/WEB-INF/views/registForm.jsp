@@ -38,7 +38,7 @@ section{
         <div id="regist-form">
             <div id="regist-item">
                 <label for="id">아이디(이름)</label>
-                <input type="text" id="id" name="membername">
+                <input type="text" id="id" name="username">
             </div>
             <div id="regist-item">
                 <label for="pw">비밀번호</label>

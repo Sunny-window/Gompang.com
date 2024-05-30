@@ -27,7 +27,7 @@
                 <span>My 곰팡</span>
             </div>
         </a></li>
-        <c:if test="${role eq 'admin'}" >
+        <c:if test="${role eq 'ROLE_ADMIN'}" >
             <li><a href="/admin/">
                 <div class="just-flex nav-li-item" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" >
                     <img id="icon"  src="/images/manager.png"> 

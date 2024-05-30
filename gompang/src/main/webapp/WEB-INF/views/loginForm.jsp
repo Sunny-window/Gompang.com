@@ -39,7 +39,7 @@
             <div id="login-form">
                 <div id="login-item">
                     <label for="id">아이디(이름)</label>
-                    <input type="text" id="id" name="membername">
+                    <input type="text" id="id" name="username">
                 </div>
                 <div id="login-item">
                     <label for="pw">비밀번호</label>

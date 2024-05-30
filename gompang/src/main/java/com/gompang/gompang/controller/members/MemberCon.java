@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gompang.gompang.dao.BasketDao;
 import com.gompang.gompang.dao.OfferDao;
 import com.gompang.gompang.dao.ProductDao;
 import com.gompang.gompang.dto.Basket;
 import com.gompang.gompang.dto.CartDto;
+import com.gompang.gompang.dto.Offer;
 import com.gompang.gompang.dto.OfferWithPnameDto;
 import com.gompang.gompang.dto.Product;
 
@@ -39,7 +39,7 @@ public class MemberCon {
         HttpSession session = req.getSession();
         String logged = (String) session.getAttribute("logged");
         if(logged == null){
-            view = "redirect:/loginForm";
+            view = "redirect:/errors?ecode=1";
         }
         return view;
     }
@@ -49,7 +49,7 @@ public class MemberCon {
         HttpSession session = req.getSession();
         String logged = (String) session.getAttribute("logged");
         if(logged == null ){
-            return "redirect:/loginForm";
+            return "redirect:/errors?ecode=1";
         }
         else{
             List<CartDto> cartList = bDao.cartList(logged);
@@ -73,7 +73,7 @@ public class MemberCon {
         HttpSession session = req.getSession();
         String logged = (String) session.getAttribute("logged");
         if(logged == null){
-            return "redirect:/loginForm";
+            return "redirect:/errors?ecode=1";
         }
         else{
             basket.setUsername(logged);
@@ -105,7 +105,7 @@ public class MemberCon {
         HttpSession session = req.getSession();
         String logged = (String) session.getAttribute("logged");
         if(logged == null ){
-            return "redirect:/loginForm";
+            return "redirect:/errors?ecode=1";
         }
         else {
             bDao.overturnBasket(logged);
@@ -115,12 +115,19 @@ public class MemberCon {
 
     @RequestMapping("/BasketDelete")
     public String cartDelete(HttpServletRequest req, Model model){
-        String  delCode = req.getParameter("bcode");
-        String[] deleteList = delCode.split(",");
-        for(String bcode : deleteList){
-            bDao.deleteBasket(Integer.parseInt(bcode));
+        HttpSession session = req.getSession();
+        String logged = (String) session.getAttribute("logged");
+        if(logged == null ){
+            return "redirect:/errors?ecode=1";
         }
-        return "redirect:/members/cart";
+        else{
+            String  delCode = req.getParameter("bcode");
+            String[] deleteList = delCode.split(",");
+            for(String bcode : deleteList){
+                bDao.deleteBasket(Integer.parseInt(bcode));
+            }
+            return "redirect:/members/cart";
+        }
     }
 
     @RequestMapping("/offerList")
@@ -129,7 +136,7 @@ public class MemberCon {
         String logged = (String) session.getAttribute("logged");
 
         if(logged == null){
-            return "redirect:/loginForm";
+            return "redirect:/errors?ecode=1";
         }else{
             List<OfferWithPnameDto> offerList = oDao.getList(logged);
             
@@ -137,6 +144,29 @@ public class MemberCon {
             return "/members/offerList";
 
         }
+    }
+
+    @RequestMapping("/offer")
+    public String offer(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        String logged = (String) session.getAttribute("logged");
+
+        if(logged == null){
+            return "redirect:/errors?ecode=1";
+        }else{
+            int pcode = Integer.parseInt(req.getParameter("pcode"));
+            int amount =Integer.parseInt(req.getParameter("amount"));
+
+            Offer offer = new Offer();
+            offer.setPcode(pcode);
+            offer.setUsername(logged);
+            offer.setAmount(amount);
+            
+            oDao.regOffer(offer);
+
+        }
+
+        return "redirect:/members/offerList";
     }
 
 }

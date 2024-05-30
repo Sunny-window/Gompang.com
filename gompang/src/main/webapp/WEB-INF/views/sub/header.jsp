@@ -119,10 +119,10 @@
     <span id="header-title" > 곰 팡 ver 2.0</span>
     <div id="header-log-info">
         <c:if test="${ sessionScope.logged ne null}">
-            <c:if test="${role eq 'admin'}">
+            <c:if test="${role eq 'ROLE_ADMIN'}">
                 <a href="/admin/"> ${sessionScope.logged} 님 </a>
             </c:if>
-            <c:if test="${role ne 'admin'}">
+            <c:if test="${role ne 'ROLE_ADMIN'}">
                 <a href="/members/"> ${sessionScope.logged} 님 </a>
             </c:if>
             <a href="/logout"> 로그아웃 </a>

@@ -83,6 +83,12 @@ pre#detail-descript{
                 </li>
             </div>
         </div>
+        <div id="detail-reply">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </div>
     </div>
 </section> 
 <script>
@@ -104,7 +110,16 @@ document.getElementById("submit-basket").addEventListener('click', ()=>{
 })
 document.getElementById("submit-offer").addEventListener('click', ()=>{
     const pcode = document.getElementById("pcode").value;
-    console.log(pcode);
+    const amount = document.getElementById("amount").value;
+    
+    if(amount <= 0){
+        alert('수량을 확인해주세요');
+        return;
+    }
+    if(amount > Number('${p.stock}')){
+        alert('재고가 부족합니다. 재고 : ' + '${p.stock}');
+        return;
+    }
 })
 </script>
 

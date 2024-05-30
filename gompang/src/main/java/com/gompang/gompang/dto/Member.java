@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
-    private String membername;
+    private String username;
     private String pwd;
     private String role;
 }   
