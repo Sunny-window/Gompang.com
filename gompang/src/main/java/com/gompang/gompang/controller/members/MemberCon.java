@@ -55,7 +55,7 @@ public class MemberCon {
             List<CartDto> cartList = bDao.cartList(logged);
     
             model.addAttribute("cartList",cartList);
-            return "/members/cart";
+            return "members/cart";
         }
     }
     @RequestMapping("/Detail")

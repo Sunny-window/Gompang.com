@@ -35,7 +35,7 @@ public class GomCon {
         List<Product> hotList = pdao.selectHot();
         model.addAttribute("hotList", hotList);
         
-        return "/index";
+        return "index";
     }
 
     @RequestMapping("/loginForm")
