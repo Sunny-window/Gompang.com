@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.gompang.gompang.dto.Member;
+import com.gompang.gompang.entity.Member;
 
 @Mapper
 public interface MemberDao {

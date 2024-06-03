@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.gompang.gompang.dto.Offer;
+import com.gompang.gompang.entity.Offer;
 import com.gompang.gompang.dto.OfferWithPnameDto;
 
 @Mapper

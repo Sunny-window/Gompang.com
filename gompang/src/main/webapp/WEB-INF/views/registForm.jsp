@@ -34,7 +34,7 @@ section{
 <section>
     <div class="main-container">
     <h2> 회원 등록 </h2>
-    <form action="/regist" method="post">
+    <form action="/registProc" method="post">
         <div id="regist-form">
             <div id="regist-item">
                 <label for="id">아이디(이름)</label>
@@ -42,7 +42,7 @@ section{
             </div>
             <div id="regist-item">
                 <label for="pw">비밀번호</label>
-                <input type="password" id="pw" name="pwd">
+                <input type="password" id="pw" name="password">
             </div>
             <br>
             <div id="regist-btns">

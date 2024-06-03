@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <meta charset="UTF-8">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <head>
 <!-- 폰트 첨부 -->
     <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
@@ -94,7 +94,7 @@
         section {
             display:flex;
             min-width:800px;
-            max-width:1400px;
+            max-width:1350px;
             padding-bottom:168px;
             margin:64px auto;
         
@@ -118,19 +118,19 @@
     <a id="header-logo" href="/"><img id="logo-img" src="/images/logo.png"></a>
     <span id="header-title" > 곰 팡 ver 2.0</span>
     <div id="header-log-info">
-        <c:if test="${ sessionScope.logged ne null}">
-            <c:if test="${role eq 'ROLE_ADMIN'}">
-                <a href="/admin/"> ${sessionScope.logged} 님 </a>
-            </c:if>
-            <c:if test="${role ne 'ROLE_ADMIN'}">
-                <a href="/members/"> ${sessionScope.logged} 님 </a>
-            </c:if>
+        <sec:authorize access="isAuthenticated()">
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <a href="/admin/"><sec:authentication property="principal.username" /> 님 (관리자)</a>
+            </sec:authorize>
+            <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                <a href="/members/"><sec:authentication property="principal.username" /> 님</a>
+            </sec:authorize>
             <a href="/logout"> 로그아웃 </a>
-        </c:if>
-        <c:if test="${sessionScope.logged eq null}">
-            <a href="/loginForm"> Login </a>
+        </sec:authorize>
+        <sec:authorize access="!isAuthenticated()">
+            <a href="/login"> Login </a>
             <a href="/registForm"> 회원가입 </a>
-        </c:if>
+        </sec:authorize>
     </div>
 </div>
 

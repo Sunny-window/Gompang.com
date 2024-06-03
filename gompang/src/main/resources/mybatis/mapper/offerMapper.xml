@@ -4,7 +4,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     <mapper namespace="com.gompang.gompang.dao.OfferDao">
 
-    <insert id="regOffer" parameterType="com.gompang.gompang.dto.Offer">
+    <insert id="regOffer" parameterType="com.gompang.gompang.entity.Offer">
         INSERT INTO offer (ocode, username, pcode, amount, odate) VALUES (null,#{username} ,#{pcode}, #{amount}, default)
     </insert>
 

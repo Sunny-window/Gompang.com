@@ -4,7 +4,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     <mapper namespace="com.gompang.gompang.dao.BasketDao">
 
-    <insert id="saveBasket" parameterType="com.gompang.gompang.dto.Basket">
+    <insert id="saveBasket" parameterType="com.gompang.gompang.entity.Basket">
         INSERT INTO basket (bcode, username, pcode, amount) VALUES (null,#{username} ,#{pcode}, #{amount});
     </insert>
 

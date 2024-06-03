@@ -16,7 +16,10 @@
 </header>
 <section>
 <div>
-    <h1> ${err_msg} ${status} ${error} </h1>
+    <h1> ${status} ${error}</h1>
+    <c:if test="${err_code eq 2}">
+        <h2>접근 권한 제한</h2>
+    </c:if>
     <c:if test="${err_code eq 1}">
         <h2>3초 뒤 로그인 화면으로 이동합니다.</h2>
     </c:if>

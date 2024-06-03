@@ -35,7 +35,7 @@
     <%@ include file="sub/nav.jsp" %>
     <div class="main-container">
         <h2 class="text-center"> LoginForm </h2>
-        <form action="/login" method="post">
+        <form action="/loginProc" method="post">
             <div id="login-form">
                 <div id="login-item">
                     <label for="id">아이디(이름)</label>
@@ -43,7 +43,7 @@
                 </div>
                 <div id="login-item">
                     <label for="pw">비밀번호</label>
-                    <input type="password" id="pw" name="pwd">
+                    <input type="password" id="pw" name="password">
                 </div>
                 <br>
                 <div id="login-btns">

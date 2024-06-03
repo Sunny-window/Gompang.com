@@ -1,4 +1,4 @@
-package com.gompang.gompang.dto;
+package com.gompang.gompang.entity;
 
 import java.time.LocalDate;
 

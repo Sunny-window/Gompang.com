@@ -9,22 +9,15 @@
 <title>상품 페이지</title>
 <style>
     .grid-container {
-        display: grid;
+        display: flex;
         background-color: white;
+        flex-direction: column;
         gap: 10px;
     }
     .grid-item {
         margin: 5px auto 15px auto;
         padding: 10px 0 0 0;
-        width: 200px;
-        height: 280px;
         transition: box-shadow 0.3s ease;
-    }
-    .grid-item img {
-        display: block;
-        width: 150px;
-        height: 150px;
-        transition: transform 0.3s ease;
     }
     .grid-item:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -32,15 +25,6 @@
     .grid-item:hover #product-name {
         color: #d44;
         text-decoration: underline;
-    }
-    .grid-3-columns {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .grid-4-columns {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    .grid-5-columns {
-        grid-template-columns: repeat(5, 1fr);
     }
     .product-link {
         color: black;
@@ -54,6 +38,11 @@
         min-height:36px;
         max-height:40px;
     }
+    .p-list-row{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
 </style>
 </head>
 <body>
@@ -63,15 +52,23 @@
         <div class="main-container">
             <h1 class="text-center"> 관리자 전용 상품 리스트 </h1>
             <div class="grid-container">
+                <div class="grid-item-head">
+                    <div class="p-list-row">
+                        <li id="product-name"> 제품명 </li>
+                        <li> 제품 가격 </li>
+                        <li id="grid-descript"> 제품 재고량 </li>
+                        <li> 삭제 </li>
+                    </div>
+                </div>
                 <c:forEach var="p" items="${pList}" varStatus="stat"> 
-                    <a class="product-link" href="/Detail?pcode=${p.pcode}">
-                        <div class="grid-item" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">
-                            <ul>
-                                <img id="pImg" src="/images/${p.img}" alt="${p.pname}">
+                    <a class="product-link" href="/members/Detail?pcode=${p.pcode}">
+                        <div class="grid-item">
+                            <div class="p-list-row">
                                 <li id="product-name">${p.pname}</li>
                                 <li><fmt:formatNumber value="${p.price}" pattern="#,###"/>원</li>
-                                <li id="grid-descript"><pre>${p.descript}</pre></li>
-                            </ul>
+                                <li id="grid-descript"><input type="number" name="stock" value="${p.stock}" onChange="test()" onClick="stopPropagation()"/> </li>
+                                <li id="grid-descript">${p.stock}</li>
+                            </div>
                         </div>
                     </a>
                 </c:forEach>
@@ -81,34 +78,11 @@
 </body>
 
 <script>
-    function adjustGridColumns() {
-        const gridContainer = document.querySelector('.grid-container');
-        const mainContainer = document.querySelector('section');
-        const gridWidth = mainContainer.offsetWidth;
-
-        let numColumns;
-        if (gridWidth >= 1200) {
-            numColumns = 5;
-        } else if (gridWidth >= 990) {
-            numColumns = 4;
-        } else {
-            numColumns = 3;
-        }
-
-        // 클래스를 토글하여 그리드 열의 수를 조정
-        if (numColumns === 3) {
-            gridContainer.classList.remove('grid-4-columns', 'grid-5-columns');
-            gridContainer.classList.add('grid-3-columns');
-        } else if (numColumns === 4) {
-            gridContainer.classList.remove('grid-3-columns', 'grid-5-columns');
-            gridContainer.classList.add('grid-4-columns');
-        } else {
-            gridContainer.classList.remove('grid-3-columns', 'grid-4-columns');
-            gridContainer.classList.add('grid-5-columns');
-        }
-    }
-
-    window.addEventListener('resize', adjustGridColumns);
-    window.addEventListener('DOMContentLoaded', adjustGridColumns); // 페이지 로드시 열의 갯수를 조정
+function test(){
+    console.log("change!!");
+}
+function stopPropagation(event) {
+    event.stopPropagation();
+}
 </script>
 </html>
