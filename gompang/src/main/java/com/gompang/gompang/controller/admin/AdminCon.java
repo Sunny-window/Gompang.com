@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.gompang.gompang.config.CustomUserDetails;
 import com.gompang.gompang.dao.Filetest;
 import com.gompang.gompang.dao.ProductDao;
-import com.gompang.gompang.entity.Product;
 import com.gompang.gompang.dto.ProductDto;
+import com.gompang.gompang.entity.Product;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -32,8 +31,14 @@ public class AdminCon {
     @Autowired
     ProductDao pDao;
 
-    @Value("${spring.servlet.multipart.location}")
-	private String uploadPath;
+    // @Value("${spring.servlet.multipart.location}")
+	// private String uploadPath;
+
+    /**
+     * 프로젝트 상대 경로
+     */
+    @Value("${file.upload-dir}")
+	String uploadPath;
 
     @RequestMapping("/")
     public String admin(HttpServletRequest req, @AuthenticationPrincipal CustomUserDetails customUserDetails){

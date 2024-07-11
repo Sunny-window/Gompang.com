@@ -18,13 +18,13 @@
         padding: 10px 0 0 0;
         width: 200px;
         height: 280px;
-        transition: box-shadow 0.3s ease;
+        transition: box-shadow 0.4s ease;
     }
     .grid-item img {
         display: block;
         width: 150px;
         height: 150px;
-        transition: transform 0.3s ease;
+        transition: transform 0.4s ease;
         overflow:hidden;
     }
     .grid-item:hover {

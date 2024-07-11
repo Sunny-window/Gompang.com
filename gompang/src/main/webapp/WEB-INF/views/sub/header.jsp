@@ -22,7 +22,7 @@
         #header{
             display:flex;
             min-width:800px;
-            justify-content: space-between;
+            justify-content: space-around;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             border-bottom:1px solid lightgrey;
         }
