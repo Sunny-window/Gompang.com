@@ -4,7 +4,6 @@ Gompang.com은 Spring Boot, Spring Security, JSP, MariaDB를 기반으로 개발
 
 ## 목차
 - [기술 스택](#기술-스택)
-- [프로젝트 구조](#프로젝트-구조)
 - [설치 및 실행](#설치-및-실행)
 - [주요 기능](#주요-기능)
 - [기여 방법](#기여-방법)
@@ -15,34 +14,6 @@ Gompang.com은 Spring Boot, Spring Security, JSP, MariaDB를 기반으로 개발
 - **Spring Security**
 - **JSP (JavaServer Pages)**
 - **MariaDB**
-
-## 프로젝트 구조
-Gompang.com/
-├── gompang/
-│ ├── src/
-│ │ ├── main/
-│ │ │ ├── java/
-│ │ │ │ └── com/
-│ │ │ │ └── gompang/
-│ │ │ │ ├── controller/
-│ │ │ │ ├── dto/
-│ │ │ │ ├── entity/
-│ │ │ │ ├── config/
-│ │ │ │ └── ...
-│ │ │ ├── resources/
-│ │ │ ├── webapp/
-│ │ │ └── WEB-INF/
-│ │ │ └── views/
-│ │ │ ├── home.jsp
-│ │ │ ├── product.jsp
-│ │ │ └── user.jsp
-│ └── ...
-├── img/
-├── .gitattributes
-├── gompang_0529_1800.sql
-├── gompang_0530_0145.sql
-├── gompang_0530_2150.sql
-└── 곰팡.txt
 
 ## 설치 및 실행
 
